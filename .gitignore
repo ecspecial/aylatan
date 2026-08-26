@@ -1,0 +1,14 @@
+node_modules
+.next
+out
+.DS_Store
+*.log
+next-env.d.ts
+.verify
+.env
+.env.*
+!.env.example
+
+# Original assets — not needed on the server
+/docs/
+/photos/
