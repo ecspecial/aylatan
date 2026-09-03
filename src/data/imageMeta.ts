@@ -1,8 +1,8 @@
 export const imageMeta = {
   "hero": {
-    "src": "/images/hero.webp?v=669956",
-    "width": 2400,
-    "height": 1805,
+    "src": "/images/osnovnoe.webp",
+    "width": 6368,
+    "height": 4741,
     "blurDataURL": "data:image/webp;base64,UklGRqgAAABXRUJQVlA4WAoAAAAQAAAAEwAADgAAQUxQSBgAAAABF3D2/4iIgTDbaJKTPM09TyCi/8nVaAFWUDggagAAADAEAJ0BKhQADwA/AWqsTysmJCIwCAFgIAllAMiYI+2Ue9wfFBvfkTIn0AD+dpAZkwqS2+V365EJ6mnQ5nXPPVxIe1g1q6Kp7kv4b0Swbls/JzYSgOMm8vZraO7Ma2dzaqNNBgg2bky1AAA="
   },
   "kimono-1": {
@@ -48,9 +48,9 @@ export const imageMeta = {
     "blurDataURL": "data:image/webp;base64,UklGRrYAAABXRUJQVlA4IKoAAAAwBQCdASoUAB4APwFyrlCrJyQisBgIAWAgCWIAnQAyw+fhfTaheSlEMDvEMQGbDNtwAADhwsWXgPgooFoO1sAHyOMI+ZxC/g3jLDo0uzJaSRJ/laTYFTOKbyI2kgx/1eQSzVs2qVzyrcLQ5uf+xzaagCOyQSj19Tgq3XPh49gS0Et7jlmScc/4iyhlPJUHFJG+PRt5YxtU1ebpfnraLtXRXQmJZAL4lEAAAA=="
   },
   "product-3": {
-    "src": "/images/product-3.webp",
-    "width": 1200,
-    "height": 1800,
+    "src": "/images/glavnay_page_2_photo.png",
+    "width": 4129,
+    "height": 6201,
     "blurDataURL": "data:image/webp;base64,UklGRrYAAABXRUJQVlA4IKoAAAAwBQCdASoUAB4APwFyrlCrJyQisBgIAWAgCWIAnQAyw+fhfTaheSlEMDvEMQGbDNtwAADhwsWXgPgooFoO1sAHyOMI+ZxC/g3jLDo0uzJaSRJ/laTYFTOKbyI2kgx/1eQSzVs2qVzyrcLQ5uf+xzaagCOyQSj19Tgq3XPh49gS0Et7jlmScc/4iyhlPJUHFJG+PRt5YxtU1ebpfnraLtXRXQmJZAL4lEAAAA=="
   },
   "product-4": {

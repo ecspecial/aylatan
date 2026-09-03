@@ -1,9 +1,8 @@
 import Link from "next/link";
-import { InstagramIcon, TikTokIcon } from "@/components/Icons";
+import { InstagramIcon } from "@/components/Icons";
 import {
   INSTAGRAM_HANDLE,
   INSTAGRAM_URL,
-  TIKTOK_URL,
 } from "@/lib/utils";
 
 const FOOTER_LINKS = [
@@ -36,17 +35,6 @@ export function Footer() {
             className="group flex items-center gap-3 text-ink/85 transition-colors hover:text-forest"
           >
             <InstagramIcon className="h-5 w-5" />
-            <span className="font-sans text-[12px] tracking-[0.12em]">
-              {INSTAGRAM_HANDLE}
-            </span>
-          </a>
-          <a
-            href={TIKTOK_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="group flex items-center gap-3 text-ink/85 transition-colors hover:text-forest"
-          >
-            <TikTokIcon className="h-5 w-5" />
             <span className="font-sans text-[12px] tracking-[0.12em]">
               {INSTAGRAM_HANDLE}
             </span>

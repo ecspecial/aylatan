@@ -41,7 +41,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru" className={`${jost.variable} ${cormorant.variable}`}>
+    <html
+      lang="ru"
+      className={`${jost.variable} ${cormorant.variable}`}
+      suppressHydrationWarning
+    >
       <body className="min-h-screen bg-paper font-sans antialiased">
         <Header />
         {children}

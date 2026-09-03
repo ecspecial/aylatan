@@ -11,14 +11,18 @@ export type CategoryId =
 export type Product = {
   id: string;
   title: string;
+  cardTitle?: string;
   category: CategoryId;
   imageKey: "product-1" | "product-2" | "product-3" | "product-4";
+  imageSrc?: string;
+  detailImages?: string[];
+  isGalleryProduct?: boolean;
   fabric: string;
   length: string;
   description: string;
 };
 
-export const products: Product[] = [
+const baseProducts: Product[] = [
   {
     id: "kimono-long-chiffon-silk",
     title: "Кимоно-халат длинное шифон-шелк 100%",
@@ -41,6 +45,7 @@ export const products: Product[] = [
   },
   {
     id: "kaftan-34-silk",
+    cardTitle: "\u0411\u0440\u044e\u043a\u0438",
     title: "Кофтан-халат длина 3/4 шелк 100%",
     category: "kaftans",
     imageKey: "product-3",
@@ -59,6 +64,89 @@ export const products: Product[] = [
     description:
       "Кимоно-халат длины 3/4 из чистого шелка. Глубокий тон, живой блеск и священный орнамент. Вы под защитой — светитесь и будьте счастливы.",
   },
+];
+
+const kimonoGalleryImages = [
+  "/images/kimono/kimono 1.webp",
+  "/images/kimono/kimono2.webp",
+  "/images/kimono/kimono 3.webp",
+  "/images/kimono/kimono 4.webp",
+  "/images/kimono/kimono5.webp",
+  "/images/kimono/kimono6.webp",
+  "/images/kimono/kimono7.webp",
+  "/images/kimono/kimono8 .webp",
+  "/images/kimono/kimono9.webp",
+  "/images/kimono/kimono10.webp",
+  "/images/kimono/kimono 11 .webp",
+  "/images/kimono/kimono12.webp",
+  "/images/kimono/kimono 13.webp",
+  "/images/kimono/kimono 14.webp",
+  "/images/kimono/kimono15.webp",
+  "/images/kimono/kimono 16.webp",
+  "/images/kimono/kimono 17.webp",
+  "/images/kimono/kimono18.webp",
+  "/images/kimono/kimono19.webp",
+  "/images/kimono/kimono20.webp",
+] as const;
+
+const kimonoTemplates = [baseProducts[0], baseProducts[1], baseProducts[3]];
+const chiffonSilkKimonoNumbers = new Set([3, 4, 6, 7, 9, 10]);
+const woolKimonoNumbers = new Set([16, 19]);
+const kimonoDetailImages: Record<number, string[]> = {
+  1: [
+    "/images/perehod_detail_every_kimono/kim_1/%D0%BF%D0%B5%D1%80%D0%B5%D1%85%D0%BE%D0%B4%201-1.webp",
+    "/images/perehod_detail_every_kimono/kim_1/%D0%BF%D0%B5%D1%80%D0%B5%D1%85%D0%BE%D0%B41%20-2.webp",
+    "/images/perehod_detail_every_kimono/kim_1/%D0%BF%D0%B5%D1%80%D0%B5%D1%85%D0%BE%D0%B41-3.webp",
+    "/images/perehod_detail_every_kimono/kim_1/%D0%BF%D0%B5%D1%80%D0%B5%D1%85%D0%BE%D0%B41-4.webp",
+    "/images/perehod_detail_every_kimono/kim_1/%D0%BF%D0%B5%D1%80%D0%B5%D1%85%D0%BE%D0%B41-5.webp",
+  ],
+  2: [
+    "/images/perehod_detail_every_kimono/kim_2/%D0%BF%D0%B5%D1%80%D0%B5%D1%85%D0%BE%D0%B42-1.webp",
+    "/images/perehod_detail_every_kimono/kim_2/%D0%BF%D0%B5%D1%80%D0%B5%D1%85%D0%BE%D0%B42-3.webp",
+    "/images/perehod_detail_every_kimono/kim_2/%D0%BF%D0%B5%D1%80%D0%B5%D1%85%D0%BE%D0%B42-4.webp",
+    "/images/perehod_detail_every_kimono/kim_2/%D0%BF%D0%B5%D1%80%D0%B5%D1%85%D0%BE%D0%B42-5.webp",
+  ],
+};
+const kimonoOneAndTwoDescription = `Элегантность — наше всё...
+
+Этот халат-кимоно сшит из натурального шёлка... Поэтому он невероятно приятен при соприкосновении с кожей...
+
+Он выходит за рамки одного сезона... Вы можете носить его дома... встречать в нём гостей... радовать своих близких... или просто себя, любимую...
+
+Можно накинуть его поверх платья... носить летом с брюками для выхода в город... надеть на отдыхе у бассейна или у моря, чтобы укрыться от солнца... Или стать звездой вечеринки...
+
+Чем больше в вашем гардеробе таких вещей, тем меньше весит ваш чемодан... Или тем больше вещей вы можете взять с собой на отдых...
+
+Размер: единый; обхват изделия — 135 см.
+Состав: 100% шёлк.
+Уход: бережная ручная стирка в холодной воде.
+Рост модели: 172 см.`;
+const kimonoPlaceholderDescription =
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+
+export const products: Product[] = [
+  ...baseProducts,
+  ...kimonoGalleryImages.map((imageSrc, index) => {
+    const number = index + 1;
+    const template = kimonoTemplates[index % kimonoTemplates.length];
+    const fabric = woolKimonoNumbers.has(number)
+      ? "шерсть 100 %"
+      : chiffonSilkKimonoNumbers.has(number)
+        ? "шелк шифон 100 %"
+        : "шелк 100 %";
+
+    return {
+      ...template,
+      id: `kimono-gallery-${String(number).padStart(2, "0")}`,
+      title: `Кимоно ${fabric}`,
+      fabric,
+      description:
+        number <= 2 ? kimonoOneAndTwoDescription : kimonoPlaceholderDescription,
+      imageSrc,
+      detailImages: kimonoDetailImages[number],
+      isGalleryProduct: true,
+    };
+  }),
 ];
 
 export const categories: Record<
@@ -120,19 +208,38 @@ export function getProduct(id: string) {
 }
 
 export function getProductsByCategory(category: CategoryId) {
-  return products.filter((item) => item.category === category);
+  return products.filter(
+    (item) =>
+      item.category === category &&
+      (category !== "kimono" || item.isGalleryProduct),
+  );
 }
 
 export function getRelatedProducts(id: string, limit = 3) {
   const current = getProduct(id);
   if (!current) return products.slice(0, limit);
-  const same = products.filter(
+  const visibleProducts = products.filter(
+    (item) => item.category !== "kimono" || item.isGalleryProduct,
+  );
+  const same = visibleProducts.filter(
     (item) => item.id !== id && item.category === current.category,
   );
-  const rest = products.filter(
+  const rest = visibleProducts.filter(
     (item) => item.id !== id && item.category !== current.category,
   );
   return [...same, ...rest].slice(0, limit);
+}
+
+export function getKimonoRecommendations(id: string, limit = 8) {
+  const kimonoProducts = products.filter((item) => item.category === "kimono");
+  const currentIndex = kimonoProducts.findIndex((item) => item.id === id);
+
+  if (currentIndex < 0) return kimonoProducts.slice(0, limit);
+
+  return [
+    ...kimonoProducts.slice(currentIndex + 1),
+    ...kimonoProducts.slice(0, currentIndex),
+  ].slice(0, limit);
 }
 
 export const designerManifesto = [

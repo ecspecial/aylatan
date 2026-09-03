@@ -3,8 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FadeImage } from "@/components/FadeImage";
 import { ProductCard } from "@/components/ProductCard";
+import { ProductImageGallery } from "@/components/ProductImageGallery";
 import {
   categories,
+  getKimonoRecommendations,
   getProduct,
   getRelatedProducts,
   products,
@@ -37,9 +39,71 @@ export default async function ProductPage({ params }: Props) {
   const product = getProduct(id);
   if (!product) notFound();
 
-  const image = imageMeta[product.imageKey];
+  const image = product.imageSrc
+    ? { src: product.imageSrc, width: 3, height: 4, blurDataURL: undefined }
+    : imageMeta[product.imageKey];
   const category = categories[product.category];
   const related = getRelatedProducts(product.id);
+  const kimonoRecommendations = product.isGalleryProduct
+    ? getKimonoRecommendations(product.id)
+    : [];
+  const gallerySources =
+    product.imageSrc
+      ? [product.imageSrc, ...(product.detailImages ?? [])]
+      : product.detailImages ?? [];
+  const galleryImages = gallerySources.map((src) => ({
+        src,
+        alt: product.title,
+      }));
+
+  if (product.isGalleryProduct && galleryImages.length > 0) {
+    return (
+      <main className="bg-paper">
+        <div className="mx-auto max-w-[1440px] px-4 py-10 md:px-8 md:py-16">
+          <p className="mb-8 text-center font-sans text-[11px] uppercase tracking-nav text-mute md:text-left">
+            <Link href="/" className="hover:text-forest">
+              Главная
+            </Link>
+            <span className="mx-3">/</span>
+            <Link href="/collection/kimono" className="hover:text-forest">
+              Кимоно
+            </Link>
+            <span className="mx-3">/</span>
+            {product.title}
+          </p>
+
+          <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(280px,360px)] lg:gap-12">
+            <ProductImageGallery
+              images={galleryImages}
+              initialSrc={product.imageSrc ?? galleryImages[0].src}
+              alt={product.title}
+            />
+            <div className="lg:pt-2">
+              <h1 className="font-serif text-3xl leading-snug text-ink md:text-4xl">
+                {product.title}
+              </h1>
+              <p className="mt-8 whitespace-pre-line font-serif text-lg leading-8 text-ink/85">
+                {product.description}
+              </p>
+            </div>
+          </div>
+
+          {kimonoRecommendations.length > 0 ? (
+            <section className="mt-20 md:mt-28">
+              <h2 className="mb-10 text-center font-sans text-[12px] uppercase tracking-nav text-mute">
+                Вам может понравиться
+              </h2>
+              <div className="grid grid-cols-2 gap-x-2 gap-y-8 sm:gap-x-3 lg:grid-cols-4">
+                {kimonoRecommendations.map((item) => (
+                  <ProductCard key={item.id} product={item} />
+                ))}
+              </div>
+            </section>
+          ) : null}
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="bg-paper">

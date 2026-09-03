@@ -27,11 +27,40 @@ export function CatalogView({ category, intro, hero }: CatalogViewProps) {
             priority
             blurDataURL={imageMeta["kimono-1"].blurDataURL}
           />
-          <div className="absolute inset-0 bg-ink/20" />
-          <h1 className="absolute inset-x-0 bottom-8 text-center font-sans text-sm uppercase tracking-[0.45em] text-cream md:bottom-12 md:text-base">
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${imageMeta.hero.src})` }}
+          />
+          <h1
+            className="absolute inset-x-0 bottom-8 text-center font-sans text-3xl font-light uppercase tracking-[0.35em] text-white md:bottom-12 md:text-4xl"
+            style={{ WebkitTextStroke: "2px #000", paintOrder: "stroke fill" }}
+          >
             {meta.title}
           </h1>
         </div>
+      ) : null}
+
+      {hero === "kimono" ? (
+        <section className="border-b border-ink/10 px-4 py-12 md:px-8 md:py-16">
+          <div className="mx-auto max-w-3xl text-center font-serif text-xl leading-relaxed text-ink md:text-2xl">
+            <div className="mb-8 flex justify-center" aria-hidden="true">
+              <img
+                src="/images/Leidenschaft_heart-removebg-preview.png"
+                alt=""
+                className="h-20 w-auto object-contain"
+              />
+            </div>
+            <p>
+              Все наши кимоно сделаны из натуральных тканей: шёлка, шерсти и хлопка... Никаких искусственных или синтетических материалов...
+            </p>
+            <p className="mt-6">
+              В них можно укрыться от солнца в тёплых краях... на море или у бассейна... накинуть поверх любого летнего наряда в городе... встретить гостей... взять с собой в спа или баню... или просто радовать себя, любимую, дома... Ведь эти ткани невероятно приятны к телу...
+            </p>
+            <p className="mt-6 italic">
+              Элегантность — наше всё... Всегда и везде...
+            </p>
+          </div>
+        </section>
       ) : null}
 
       {hero === "kaftan" ? (
@@ -87,7 +116,7 @@ export function CatalogView({ category, intro, hero }: CatalogViewProps) {
         )}
 
         {items.length > 0 ? (
-          <ProductGrid items={items} />
+          <ProductGrid items={items} columns={hero === "kimono" ? 3 : 4} />
         ) : (
           <EmptyCollection title={meta.title} />
         )}

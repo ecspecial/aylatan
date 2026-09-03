@@ -52,7 +52,7 @@ function DesktopNav({ items, align }: { items: MenuItem[]; align: "left" | "righ
   return (
     <ul
       className={cn(
-        "hidden items-center gap-8 lg:flex xl:gap-10",
+        "hidden items-center gap-8 min-[900px]:flex xl:gap-10",
         align === "right" && "justify-end",
       )}
     >
@@ -110,11 +110,11 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-sand/80 bg-paper/92 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-sand/80 bg-sand">
       <div className="relative mx-auto h-[72px] max-w-[1440px] md:h-[88px]">
         <button
           type="button"
-          className="absolute left-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center lg:hidden"
+          className="absolute left-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center min-[900px]:hidden"
           aria-label={open ? "Закрыть меню" : "Открыть меню"}
           aria-expanded={open}
           onClick={() => setOpen((value) => !value)}
@@ -158,10 +158,19 @@ export function Header() {
         </div>
       </div>
 
-      <div
+      {open ? (
+        <button
+          type="button"
+          className="fixed inset-x-0 top-[72px] bottom-0 z-[55] bg-ink/20 min-[900px]:hidden md:top-[88px]"
+          aria-label="Закрыть меню"
+          onClick={() => setOpen(false)}
+        />
+      ) : null}
+
+      <aside
         className={cn(
-          "fixed inset-x-0 top-[72px] bottom-0 z-40 overflow-y-auto bg-paper transition-all duration-300 lg:hidden md:top-[88px]",
-          open ? "visible opacity-100" : "invisible opacity-0",
+          "fixed bottom-0 left-0 top-[72px] z-[60] w-[min(360px,90vw)] overflow-y-auto border-r border-sand bg-paper shadow-menu transition-transform duration-300 min-[900px]:hidden md:top-[88px]",
+          open ? "translate-x-0" : "pointer-events-none -translate-x-full",
         )}
       >
         <nav className="flex flex-col px-8 py-10">
@@ -219,7 +228,7 @@ export function Header() {
             </div>
           ))}
         </nav>
-      </div>
+      </aside>
     </header>
   );
 }

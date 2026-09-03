@@ -30,7 +30,7 @@ export function KimonoSlider() {
 
     const timer = window.setInterval(() => {
       setIndex((current) => (current + 1) % SLIDES.length);
-    }, 2000);
+    }, 6000);
 
     return () => {
       cancelled = true;

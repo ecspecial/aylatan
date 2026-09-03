@@ -16,14 +16,6 @@ export function InstagramIcon({ className }: { className?: string }) {
   );
 }
 
-export function TikTokIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} aria-hidden fill="currentColor">
-      <path d="M14.2 3c.4 2.4 1.8 4.1 4.3 4.4v2.3c-1.5 0-2.9-.5-4.1-1.4v6.5c0 3.4-2.6 5.7-5.8 5.7-3.2 0-5.6-2.4-5.6-5.6 0-3.3 2.5-5.7 5.8-5.7.4 0 .9.1 1.3.2v2.5c-.4-.2-.8-.3-1.3-.3-1.8 0-3.2 1.4-3.2 3.3 0 1.8 1.4 3.2 3.2 3.2 1.8 0 3.2-1.4 3.2-3.4V3h2.2Z" />
-    </svg>
-  );
-}
-
 export function HeartMark({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 32 28" className={className} aria-hidden fill="none">
