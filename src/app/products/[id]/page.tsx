@@ -45,16 +45,23 @@ export default async function ProductPage({ params }: Props) {
   const category = categories[product.category];
   const related = getRelatedProducts(product.id);
   const kimonoRecommendations = product.isGalleryProduct
-    ? getKimonoRecommendations(product.id)
+    ? getKimonoRecommendations(product.id, 3)
     : [];
-  const gallerySources =
-    product.imageSrc
-      ? [product.imageSrc, ...(product.detailImages ?? [])]
-      : product.detailImages ?? [];
-  const galleryImages = gallerySources.map((src) => ({
-        src,
-        alt: product.title,
-      }));
+  const galleryImages = [
+    ...(product.imageSrc
+      ? [{ src: product.imageSrc, alt: product.title, type: "image" as const }]
+      : []),
+    ...(product.detailImages ?? []).map((src) => ({
+      src,
+      alt: product.title,
+      type: "image" as const,
+    })),
+    ...(product.detailVideos ?? []).map((src) => ({
+      src,
+      alt: `${product.title} video`,
+      type: "video" as const,
+    })),
+  ];
 
   if (product.isGalleryProduct && galleryImages.length > 0) {
     return (
@@ -79,12 +86,33 @@ export default async function ProductPage({ params }: Props) {
               alt={product.title}
             />
             <div className="lg:pt-2">
+              <p className="font-sans text-[11px] uppercase tracking-nav text-gold">
+                {category.title}
+              </p>
               <h1 className="font-serif text-3xl leading-snug text-ink md:text-4xl">
                 {product.title}
               </h1>
-              <p className="mt-8 whitespace-pre-line font-serif text-lg leading-8 text-ink/85">
+              <dl className="mt-8 space-y-2 font-sans text-sm text-mute">
+                <div className="flex gap-3">
+                  <dt className="text-[11px] uppercase tracking-nav">Ткань</dt>
+                  <dd>{product.fabric}</dd>
+                </div>
+                <div className="flex gap-3">
+                  <dt className="text-[11px] uppercase tracking-nav">Длина</dt>
+                  <dd>{product.length}</dd>
+                </div>
+              </dl>
+              <p className="mt-8 whitespace-pre-line font-serif text-lg italic leading-8 text-ink/85">
                 {product.description}
               </p>
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-10 inline-flex border border-ink px-8 py-3 font-sans text-[11px] uppercase tracking-nav text-ink transition-colors hover:border-forest hover:bg-forest hover:text-cream"
+              >
+                Заказать {INSTAGRAM_HANDLE}
+              </a>
             </div>
           </div>
 
@@ -93,7 +121,7 @@ export default async function ProductPage({ params }: Props) {
               <h2 className="mb-10 text-center font-sans text-[12px] uppercase tracking-nav text-mute">
                 Вам может понравиться
               </h2>
-              <div className="grid grid-cols-2 gap-x-2 gap-y-8 sm:gap-x-3 lg:grid-cols-4">
+              <div className="grid grid-cols-2 gap-x-2 gap-y-8 sm:gap-x-3 lg:grid-cols-3">
                 {kimonoRecommendations.map((item) => (
                   <ProductCard key={item.id} product={item} />
                 ))}
@@ -170,7 +198,7 @@ export default async function ProductPage({ params }: Props) {
         {related.length > 0 ? (
           <section className="mt-20 md:mt-28">
             <h2 className="mb-10 text-center font-sans text-[12px] uppercase tracking-nav text-mute">
-              Смотрите также
+              Вам может понравиться
             </h2>
             <div className="grid grid-cols-2 gap-x-2 gap-y-8 sm:gap-x-3 lg:grid-cols-3">
               {related.map((item) => (

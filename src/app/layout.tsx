@@ -27,6 +27,9 @@ export const metadata: Metadata = {
   description:
     "Кимоно, кафтаны и украшения AYLATAN. Каждая вещичка намолена, орнамент священен. Вы под защитой.",
   metadataBase: new URL("https://aylatan.local"),
+  icons: {
+    icon: "/icon.svg",
+  },
   openGraph: {
     title: "AYLATAN",
     description: "Кимоно, кафтаны и украшения, созданные с любовью.",

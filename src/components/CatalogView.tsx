@@ -18,7 +18,7 @@ export function CatalogView({ category, intro, hero }: CatalogViewProps) {
   return (
     <main className="bg-paper">
       {hero === "kimono" ? (
-        <div className="relative aspect-[21/9] min-h-[240px] w-full">
+        <div className="relative aspect-[3/2] min-h-[240px] w-full">
           <FadeImage
             src={imageMeta["kimono-1"].src}
             alt="Кимоно"
@@ -29,7 +29,7 @@ export function CatalogView({ category, intro, hero }: CatalogViewProps) {
           />
           <div
             className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${imageMeta.hero.src})` }}
+            style={{ backgroundImage: "url(/images/osnovnoe_kimono.webp)" }}
           />
           <h1
             className="absolute inset-x-0 bottom-8 text-center font-sans text-3xl font-light uppercase tracking-[0.35em] text-white md:bottom-12 md:text-4xl"

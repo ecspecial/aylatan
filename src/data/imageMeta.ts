@@ -48,9 +48,9 @@ export const imageMeta = {
     "blurDataURL": "data:image/webp;base64,UklGRrYAAABXRUJQVlA4IKoAAAAwBQCdASoUAB4APwFyrlCrJyQisBgIAWAgCWIAnQAyw+fhfTaheSlEMDvEMQGbDNtwAADhwsWXgPgooFoO1sAHyOMI+ZxC/g3jLDo0uzJaSRJ/laTYFTOKbyI2kgx/1eQSzVs2qVzyrcLQ5uf+xzaagCOyQSj19Tgq3XPh49gS0Et7jlmScc/4iyhlPJUHFJG+PRt5YxtU1ebpfnraLtXRXQmJZAL4lEAAAA=="
   },
   "product-3": {
-    "src": "/images/glavnay_page_2_photo.png",
-    "width": 4129,
-    "height": 6201,
+    "src": "/images/glavnay_page_2_photo.webp",
+    "width": 1800,
+    "height": 2703,
     "blurDataURL": "data:image/webp;base64,UklGRrYAAABXRUJQVlA4IKoAAAAwBQCdASoUAB4APwFyrlCrJyQisBgIAWAgCWIAnQAyw+fhfTaheSlEMDvEMQGbDNtwAADhwsWXgPgooFoO1sAHyOMI+ZxC/g3jLDo0uzJaSRJ/laTYFTOKbyI2kgx/1eQSzVs2qVzyrcLQ5uf+xzaagCOyQSj19Tgq3XPh49gS0Et7jlmScc/4iyhlPJUHFJG+PRt5YxtU1ebpfnraLtXRXQmJZAL4lEAAAA=="
   },
   "product-4": {

@@ -4,16 +4,17 @@ import { FadeImage } from "@/components/FadeImage";
 import { HeartMark } from "@/components/Icons";
 import { KimonoSlider } from "@/components/KimonoSlider";
 import { ProductGrid } from "@/components/ProductCard";
-import { designerManifesto, products } from "@/data/catalog";
+import { designerManifesto, getHomeProducts } from "@/data/catalog";
 import { imageMeta } from "@/data/imageMeta";
 import { INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/lib/utils";
 
 export default function HomePage() {
+  const homeProducts = getHomeProducts();
+
   preload(imageMeta.hero.src, { as: "image" });
-  preload(imageMeta["product-1"].src, { as: "image" });
-  preload(imageMeta["product-2"].src, { as: "image" });
-  preload(imageMeta["product-3"].src, { as: "image" });
-  preload(imageMeta["product-4"].src, { as: "image" });
+  homeProducts.forEach((product) => {
+    preload(product.imageSrc ?? imageMeta[product.imageKey].src, { as: "image" });
+  });
   preload(imageMeta["kimono-1"].src, { as: "image" });
   preload(imageMeta["kimono-2"].src, { as: "image" });
   return (
@@ -33,14 +34,14 @@ export default function HomePage() {
       </section>
 
       <section className="mx-auto max-w-[1440px] px-3 py-10 md:px-6 md:py-14 lg:px-8">
-        <ProductGrid items={products} />
+        <ProductGrid items={homeProducts} />
       </section>
 
       <section>
         <KimonoSlider />
       </section>
 
-      <section>
+      <section className="mt-8 md:mt-12">
         <Link
           href="/collection/kaftans"
           className="group relative block overflow-hidden"

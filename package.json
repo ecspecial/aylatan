@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "optimize-images": "node scripts/optimize-images.mjs"
+    "optimize-images": "node scripts/optimize-images.mjs",
+    "compress-public-images": "node scripts/compress-public-images.mjs"
   },
   "dependencies": {
     "next": "^15.5.2",
